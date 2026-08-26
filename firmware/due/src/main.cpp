@@ -1,17 +1,28 @@
 #include <Arduino.h>
+#include <SPI.h>
+#include <Ethernet.h>
 
-const int CSN_PIN = 22;
+byte mac[] = {
+    0x02, 0xAA, 0xBB, 0xCC, 0xDD, 0x01
+};
 
-void setup() {
-  // put your setup code here,to run once:
-  pinMode (CSN_PIN , OUTPUT);
+IPAddress ip(192, 168, 0, 120);
 
+void setup()
+{
+    SerialUSB.begin(115200);
+    delay(2000);
+
+    SerialUSB.println("Starting Ethernet...");
+
+    Ethernet.begin(mac, ip);
+
+    delay(1000);
+
+    SerialUSB.print("IP: ");
+    SerialUSB.println(Ethernet.localIP());
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  digitalWrite (CSN_PIN , HIGH);
-  delay(1000);
-  digitalWrite (CSN_PIN , LOW);  
-} 
-
+void loop()
+{
+}
