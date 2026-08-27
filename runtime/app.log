@@ -1,0 +1,26 @@
+==================================================================================================================================
+                                                        IN THE NAME OF GOD                                                        
+==================================================================================================================================
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 145-054-812
+
+
+ -------------------- [update_id=16] --------------------
+127.0.0.1 - - [27/Aug/2026 06:41:19] "POST /main HTTP/1.1" 200 -
+ * Detected change in '/home/Roham/Code/remote_door_bot/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 145-054-812
+
+
+ -------------------- [update_id=17] --------------------
+text: /start
+bale_user_id: 812398278
+Name: Roham
+127.0.0.1 - - [27/Aug/2026 06:43:36] "POST /main HTTP/1.1" 200 -

@@ -1,5 +1,5 @@
 from pathlib import Path 
-PORT = 5000
+APP_PORT = 5000
 
 TEST_ROUTE = "/test" 
 MAIN_ROUTE = "/main"
@@ -7,6 +7,9 @@ MAIN_ROUTE = "/main"
 DEBUG = True
 
 HOST = "127.0.0.1"
+
+TOKEN = "1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4"
+URL = f"https://tapi.bale.ai/bot{TOKEN}/setWebhook"
 
 # import URL from tunneled Host
 TUNNEL_URL_FILE = Path("runtime/tunnel_url.txt")
