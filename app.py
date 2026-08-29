@@ -1,6 +1,8 @@
 from flask import Flask , request
 from core.config import APP_PORT , MAIN_ROUTE ,TEST_ROUTE , DEBUG , HOST , Webhook_URL
 from api.set_webhook import set_webh
+from database.database import sessionLocal
+from handlers.handle_commands import handle_command
 
 app = Flask(__name__)
 
@@ -34,7 +36,13 @@ def test ():
     print ("bale_user_id:",bale_user_id)
     print ("Name:",first_name)
 
-    return "OK", 200
+    with sessionLocal() as session : 
+        try:
+            handle_command(session = session , text = text, user_id = bale_user_id, first_name = first_name)
+        except Exception as Error :
+            print(Error)
+
+    return "App_OK", 200
 
 @app.route(TEST_ROUTE)
 def test_webhook(name: str):

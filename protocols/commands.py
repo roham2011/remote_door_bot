@@ -1,2 +1,3 @@
 class COMMANDS():
-    start : str = "/start"
+    
+    START : str = "/start"

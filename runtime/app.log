@@ -8,19 +8,27 @@
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 145-054-812
+ * Debugger PIN: 552-056-721
 
 
- -------------------- [update_id=16] --------------------
-127.0.0.1 - - [27/Aug/2026 06:41:19] "POST /main HTTP/1.1" 200 -
- * Detected change in '/home/Roham/Code/remote_door_bot/app.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 145-054-812
-
-
- -------------------- [update_id=17] --------------------
+ -------------------- [update_id=18] --------------------
 text: /start
 bale_user_id: 812398278
 Name: Roham
-127.0.0.1 - - [27/Aug/2026 06:43:36] "POST /main HTTP/1.1" 200 -
+127.0.0.1 - - [29/Aug/2026 06:06:17] "POST /main HTTP/1.1" 200 -
+ * Detected change in '/home/Roham/Code/remote_door_bot/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 552-056-721
+{'update_id': 19, 'message': {'message_id': 19, 'from': {'id': 812398278, 'is_bot': False, 'first_name': 'Roham', 'last_name': '', 'username': 'rohamabd'}, 'date': 1787983627, 'chat': {'id': 812398278, 'type': 'private', 'username': 'rohamabd', 'first_name': 'Roham'}, 'text': '/start', 'entities': [{'type': 'bot_command', 'offset': 0, 'length': 6}]}}
+127.0.0.1 - - [29/Aug/2026 06:07:08] "POST /main HTTP/1.1" 200 -
+ * Detected change in '/home/Roham/Code/remote_door_bot/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 552-056-721
+/start
+127.0.0.1 - - [29/Aug/2026 06:08:34] "POST /main HTTP/1.1" 200 -
+ * Detected change in '/home/Roham/Code/remote_door_bot/test.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 552-056-721
