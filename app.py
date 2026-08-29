@@ -3,6 +3,7 @@ from config import APP_PORT , MAIN_ROUTE ,TEST_ROUTE , DEBUG , HOST , Webhook_UR
 from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
+import traceback
 
 app = Flask(__name__)
 
@@ -31,7 +32,7 @@ def test ():
     if text is None or bale_user_id is None:
         return "ok"
     
-    print ("\n\n","-"*20,f"[update_id={update_id}]","-"*20)
+    print ("\n\n","="*20,f"[update_id={update_id}]","="*20)
     print ("text:",text)
     print ("bale_user_id:",bale_user_id)
     print ("Name:",first_name)
@@ -39,8 +40,10 @@ def test ():
     with sessionLocal() as session : 
         try:
             handle_command(session = session , text = text, user_id = bale_user_id, first_name = first_name)
-        except Exception as Error :
-            print(Error)
+        except Exception as error :
+            print("-"*60,"\nERROR:", error)
+            traceback.print_exc()
+            print("-"*60)
 
     return "App_OK", 200
 

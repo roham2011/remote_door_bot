@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Mapped , mapped_column
 from .database import sessionLocal
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import DeclarativeBase
 
-class Base(declarative_base):
+class Base(DeclarativeBase):
     pass
 
 class User(Base):

@@ -16,7 +16,7 @@ echo "================================================"
 echo "==================================================================================================================================" > runtime/app.log
 echo "                                                        IN THE NAME OF GOD                                                        " >> runtime/app.log
 echo "==================================================================================================================================" >> runtime/app.log
-PORT=$(python -c "from core.config import APP_PORT; print(APP_PORT)")
+PORT=$(python -c "from config import APP_PORT; print(APP_PORT)")
 
 echo "================================================"
 echo "Creating SSH Tunne"

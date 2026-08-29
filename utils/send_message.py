@@ -1,5 +1,5 @@
 import requests
-from config import URL
+from config import SEND_MESSAGE_URL
 
 def post_message (payload):
 
@@ -7,7 +7,7 @@ def post_message (payload):
     print(payload)
 
     response = requests.post(
-        url=URL,
+        SEND_MESSAGE_URL,
         json=payload
     )
 

@@ -8,27 +8,16 @@
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 552-056-721
+ * Debugger PIN: 110-544-942
 
 
- -------------------- [update_id=18] --------------------
+ ==================== [update_id=41] ====================
 text: /start
 bale_user_id: 812398278
 Name: Roham
-127.0.0.1 - - [29/Aug/2026 06:06:17] "POST /main HTTP/1.1" 200 -
- * Detected change in '/home/Roham/Code/remote_door_bot/app.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-056-721
-{'update_id': 19, 'message': {'message_id': 19, 'from': {'id': 812398278, 'is_bot': False, 'first_name': 'Roham', 'last_name': '', 'username': 'rohamabd'}, 'date': 1787983627, 'chat': {'id': 812398278, 'type': 'private', 'username': 'rohamabd', 'first_name': 'Roham'}, 'text': '/start', 'entities': [{'type': 'bot_command', 'offset': 0, 'length': 6}]}}
-127.0.0.1 - - [29/Aug/2026 06:07:08] "POST /main HTTP/1.1" 200 -
- * Detected change in '/home/Roham/Code/remote_door_bot/app.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-056-721
-/start
-127.0.0.1 - - [29/Aug/2026 06:08:34] "POST /main HTTP/1.1" 200 -
- * Detected change in '/home/Roham/Code/remote_door_bot/test.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 552-056-721
+Sending payload:
+{'chat_id': 812398278, 'text': 'سلام Roham، خوش آمدید 🌟\nخوشحالیم که اینجا هستید 😊\nاگر سوالی دارید، کافی است از ما بپرسید.', 'reply_markup': {'inline_keyboard': [[{'text': 'درباره ما', 'callback_data': '/about'}], [{'text': 'پنل کاربری', 'callback_data': '/user.panel'}]]}}
+Bale Status Code: 200
+Bale Response:
+{"ok":true,"result":{"message_id":42,"from":{"id":1796130842,"is_bot":true,"first_name":"","last_name":"","username":"remote_door_bot"},"date":1788004204,"chat":{"id":812398278,"type":"private"},"text":"سلام Roham، خوش آمدید 🌟\nخوشحالیم که اینجا هستید 😊\nاگر سوالی دارید، کافی است از ما بپرسید.","reply_markup":{"inline_keyboard":[[{"text":"درباره ما","callback_data":"/about"}],[{"text":"پنل کاربری","callback_data":"/user.panel"}]]}}}
+127.0.0.1 - - [29/Aug/2026 11:50:04] "POST /main HTTP/1.1" 200 -
