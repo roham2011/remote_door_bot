@@ -1,8 +1,8 @@
 from flask import Flask , request
-from core.config import APP_PORT , MAIN_ROUTE ,TEST_ROUTE , DEBUG , HOST , Webhook_URL
-from api.set_webhook import set_webh
+from config import APP_PORT , MAIN_ROUTE ,TEST_ROUTE , DEBUG , HOST , Webhook_URL
+from utils.set_webhook import set_webh
 from database.database import sessionLocal
-from handlers.handle_commands import handle_command
+from core.handle_commands import handle_command
 
 app = Flask(__name__)
 
