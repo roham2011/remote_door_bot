@@ -1,6 +1,7 @@
 {
-    "app_port": 5000,
+    "app_port": 5011,
     "debug": true,
     "host": "127.0.0.1",
-    "token": "1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4"
+    "token": "1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4",
+    "num_of_doors": 2
 }

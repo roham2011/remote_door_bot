@@ -1,5 +1,9 @@
+#code envirment 
 .env
 
+#personal test
 test.py
-
 test/
+
+#critical show
+settings.json

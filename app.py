@@ -1,5 +1,5 @@
 from flask import Flask , request
-from config import APP_PORT , MAIN_ROUTE ,TEST_ROUTE , DEBUG , HOST , Webhook_URL
+from config.config import APP_PORT , MAIN_ROUTE ,TEST_ROUTE , DEBUG , HOST , webhook_url , TOKEN , NUM_OF_DOORS
 from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
@@ -7,7 +7,7 @@ import traceback
 
 app = Flask(__name__)
 
-set_webh(Webhook_URL)
+set_webh(webhook_url)
 
 @app.route(MAIN_ROUTE,methods=["POST"])
 def test ():
@@ -54,4 +54,12 @@ def test_webhook(name: str):
 
 
 if __name__ == "__main__":
-   app.run(host=HOST, port=APP_PORT, debug=DEBUG)
+    print ("="*70,f"\nconfiguration was loaded\
+    \nToken           = {TOKEN}\
+    \nPort            = {APP_PORT}\
+    \nHost            = {HOST}\
+    \nNumber of Doors = {NUM_OF_DOORS}\n"\
+    ,"="*70 , sep = ""
+    )
+    app.run(host=HOST, port=APP_PORT, debug=DEBUG)
+

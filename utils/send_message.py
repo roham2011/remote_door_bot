@@ -1,5 +1,5 @@
 import requests
-from config import SEND_MESSAGE_URL
+from config.config import SEND_MESSAGE_URL
 
 def post_message (payload):
 

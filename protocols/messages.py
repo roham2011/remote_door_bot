@@ -11,10 +11,13 @@ def send_start_menu(chat_id: int, first_name: str):
         ),
         "reply_markup": {
             "inline_keyboard": [
-                [{"text": "درباره ما", "callback_data": Commands.ABOUT}],
+                [{"text": "کنترل درب ها", "callback_data": Commands.DOORS}],
                 [{"text": "پنل کاربری", "callback_data": Commands.USER_PANEL}],
             ]
         },
     }
 
     post_message(payload)
+
+def send_status_doors(door_num,):
+    pass

@@ -1,23 +1,58 @@
 ==================================================================================================================================
                                                         IN THE NAME OF GOD                                                        
 ==================================================================================================================================
+======================================================================
+configuration was loaded    
+Token           = 1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4    
+Port            = 5001    
+Host            = 127.0.0.1    
+Number of Doors = 1
+======================================================================
  * Serving Flask app 'app'
  * Debug mode: on
 [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
+ * Running on http://127.0.0.1:5001
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
+======================================================================
+configuration was loaded    
+Token           = 1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4    
+Port            = 5001    
+Host            = 127.0.0.1    
+Number of Doors = 1
+======================================================================
  * Debugger is active!
- * Debugger PIN: 110-544-942
-
-
- ==================== [update_id=41] ====================
-text: /start
-bale_user_id: 812398278
-Name: Roham
-Sending payload:
-{'chat_id': 812398278, 'text': 'سلام Roham، خوش آمدید 🌟\nخوشحالیم که اینجا هستید 😊\nاگر سوالی دارید، کافی است از ما بپرسید.', 'reply_markup': {'inline_keyboard': [[{'text': 'درباره ما', 'callback_data': '/about'}], [{'text': 'پنل کاربری', 'callback_data': '/user.panel'}]]}}
-Bale Status Code: 200
-Bale Response:
-{"ok":true,"result":{"message_id":42,"from":{"id":1796130842,"is_bot":true,"first_name":"","last_name":"","username":"remote_door_bot"},"date":1788004204,"chat":{"id":812398278,"type":"private"},"text":"سلام Roham، خوش آمدید 🌟\nخوشحالیم که اینجا هستید 😊\nاگر سوالی دارید، کافی است از ما بپرسید.","reply_markup":{"inline_keyboard":[[{"text":"درباره ما","callback_data":"/about"}],[{"text":"پنل کاربری","callback_data":"/user.panel"}]]}}}
-127.0.0.1 - - [29/Aug/2026 11:50:04] "POST /main HTTP/1.1" 200 -
+ * Debugger PIN: 104-934-599
+ * Detected change in '/home/Roham/Code/remote_door_bot/core/logging.py', reloading
+ * Restarting with stat
+======================================================================
+configuration was loaded    
+Token           = 1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4    
+Port            = 5001    
+Host            = 127.0.0.1    
+Number of Doors = 1
+======================================================================
+ * Debugger is active!
+ * Debugger PIN: 104-934-599
+ * Detected change in '/home/Roham/Code/remote_door_bot/config/config.py', reloading
+ * Restarting with stat
+======================================================================
+configuration was loaded    
+Token           = 1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4    
+Port            = 5001    
+Host            = 127.0.0.1    
+Number of Doors = 1
+======================================================================
+ * Debugger is active!
+ * Debugger PIN: 104-934-599
+ * Detected change in '/home/Roham/Code/remote_door_bot/config/config_editor.py', reloading
+ * Restarting with stat
+======================================================================
+configuration was loaded    
+Token           = 1796130842:u0sYHYixJ_7fS2ra6lOvySNzw3WD9EA3CJ4    
+Port            = 5001    
+Host            = 127.0.0.1    
+Number of Doors = 1
+======================================================================
+ * Debugger is active!
+ * Debugger PIN: 104-934-599
