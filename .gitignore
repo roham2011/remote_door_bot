@@ -1,9 +1,26 @@
-#code envirment 
-.env
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
 
-#personal test
-test.py
-test/
-
-#critical show
+# Configuration
 settings.json
+
+# Runtime files
+runtime/
+
+# Logs
+*.log
+
+# Environment variables / secrets
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
