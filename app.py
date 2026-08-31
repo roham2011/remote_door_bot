@@ -1,65 +1,159 @@
-from flask import Flask , request
-from config.config import APP_PORT , MAIN_ROUTE ,TEST_ROUTE , DEBUG , HOST , webhook_url , TOKEN , NUM_OF_DOORS
+from flask import Flask, request
+from config.config import APP_PORT, MAIN_ROUTE,TEST_ROUTE, DEBUG,HOST, webhook_url ,TOKEN, NUM_OF_DOORS
 from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
-import traceback
+from core.logging import get_logger , separator_log
 
+
+# ============================================================
+# Logger
+# ============================================================
+logger = get_logger(__name__)
+
+
+# ============================================================
+# Flask Application
+# ============================================================
 app = Flask(__name__)
 
+
+# ============================================================
+# Webhook
+# ============================================================
 set_webh(webhook_url)
 
-@app.route(MAIN_ROUTE,methods=["POST"])
-def test ():
+
+# ============================================================
+# Main Webhook Route
+# ============================================================
+@app.route(MAIN_ROUTE, methods=["POST"])
+def main_webhook():
+
     update = request.get_json(silent=True) or {}
-    update_id = update["update_id"]
-    
+
+    update_id = update.get("update_id")
+
     text = None
     bale_user_id = None
     first_name = None
 
 
+    # --------------------------------------------------------
+    # Message Update
+    # --------------------------------------------------------
+
     if "message" in update:
-        text = update["message"].get("text")
-        bale_user_id = update["message"]["from"]["id"]
-        first_name = update["message"]["from"].get("first_name")
-    
-    if "callback_query" in update:
-        text = update["callback_query"].get("data")
-        bale_user_id = update["callback_query"]["from"]["id"]
-        first_name = update["callback_query"]["from"].get("first_name")
+
+        message = update["message"]
+
+        text = message.get("text")
+
+        user = message.get("from", {})
+
+        bale_user_id = user.get("id")
+
+        first_name = user.get("first_name")
+
+
+    # --------------------------------------------------------
+    # Callback Query Update
+    # --------------------------------------------------------
+
+    elif "callback_query" in update:
+
+        callback_query = update["callback_query"]
+
+        text = callback_query.get("data")
+
+        user = callback_query.get("from", {})
+
+        bale_user_id = user.get("id")
+
+        first_name = user.get("first_name")
+
+
+    # --------------------------------------------------------
+    # Invalid Update
+    # --------------------------------------------------------
 
     if text is None or bale_user_id is None:
-        return "ok"
-    
-    print ("\n\n","="*20,f"[update_id={update_id}]","="*20)
-    print ("text:",text)
-    print ("bale_user_id:",bale_user_id)
-    print ("Name:",first_name)
 
-    with sessionLocal() as session : 
+        logger.warning("Invalid update received | update_id=%s",update_id)
+
+        return "ok"
+
+
+    # ========================================================
+    # Update Log
+    # ========================================================
+
+    separator_log(logger,f"UPDATE {update_id}",state=True)
+
+    logger.info("Text: %s", text)
+    logger.info("Bale User ID: %s", bale_user_id)
+    logger.info("Name: %s", first_name)
+
+
+    # ========================================================
+    # Command Handling
+    # ========================================================
+
+    with sessionLocal() as session:
+
         try:
-            handle_command(session = session , text = text, user_id = bale_user_id, first_name = first_name)
-        except Exception as error :
-            print("-"*60,"\nERROR:", error)
-            traceback.print_exc()
-            print("-"*60)
+
+            logger.info("Handling update | update_id=%s",update_id)
+
+            handle_command(session=session,text=text,user_id=bale_user_id,first_name=first_name)
+
+            logger.info("Update handled successfully | update_id=%s",update_id)
+
+
+        except Exception:
+
+            logger.exception("Error while handling update | update_id=%s",update_id)
+
+
+    # ========================================================
+    # End Update
+    # ========================================================
+
+    logger.info("Finished update | update_id=%s",update_id)
+
+    separator_log(logger,state=False)
 
     return "App_OK", 200
 
-@app.route(TEST_ROUTE)
-def test_webhook(name: str):
-    """Test route."""
-    return f"Hello {name}, webhook is OK!"
 
+# ============================================================
+# Test Route
+# ============================================================
+
+@app.route(TEST_ROUTE)
+def test_webhook():
+
+    logger.info("Test webhook requested")
+
+    return "Webhook is OK!"
+
+
+# ============================================================
+# Application Startup
+# ============================================================
 
 if __name__ == "__main__":
-    print ("="*70,f"\nconfiguration was loaded\
-    \nToken           = {TOKEN}\
-    \nPort            = {APP_PORT}\
-    \nHost            = {HOST}\
-    \nNumber of Doors = {NUM_OF_DOORS}\n"\
-    ,"="*70 , sep = ""
-    )
-    app.run(host=HOST, port=APP_PORT, debug=DEBUG)
+
+    separator_log( logger, "Configuration loaded", state=True )
+
+    logger.info("Port = %s", APP_PORT)
+    logger.info("Host = %s", HOST)
+    logger.info("Number of Doors = %s", NUM_OF_DOORS)
+    logger.info("Debug = %s", DEBUG)
+    separator_log(logger)
+
+    logger.info("Starting Flask application")
+    separator_log(logger)
+
+    app.run(host=HOST,port=APP_PORT,debug=DEBUG)
 

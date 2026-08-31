@@ -1,6 +1,8 @@
 import json
 
-
+# ============================================================
+# edit config function
+# ============================================================
 def edit_config(settings_path):
     print("\n" + "=" * 70)
     print("configuration")

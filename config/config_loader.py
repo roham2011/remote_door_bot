@@ -1,7 +1,9 @@
 import json
 from .config_editor import edit_config
 
-
+# ============================================================
+#load config function
+# ============================================================
 def load_configs(settings_path):
 
     try:
