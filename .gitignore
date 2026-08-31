@@ -25,7 +25,7 @@ runtime/
 .DS_Store
 Thumbs.db
 
-# Cach
+# Cache
 __pycache__
 protocols/__pycache__
 config/__pycache__
