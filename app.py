@@ -3,7 +3,7 @@ from config.config import APP_PORT, MAIN_ROUTE,TEST_ROUTE, DEBUG,HOST, webhook_u
 from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
-from core.logging import get_logger , separator_log
+from protocols.logging import get_logger , separator_log
 
 
 # ============================================================
@@ -133,7 +133,12 @@ def main_webhook():
 @app.route(TEST_ROUTE)
 def test_webhook():
 
-    logger.info("Test webhook requested")
+    update = request.get_json(silent=True)
+    update_id = update.get("update_id")
+
+    separator_log(logger,f"UPDATE from \"TEST\"{update_id}",state=True)
+
+    logger.info(f"Test webhook requested:\n{update}")
 
     return "Webhook is OK!"
 

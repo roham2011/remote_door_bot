@@ -19,7 +19,7 @@ NUM_OF_DOORS = config["num_of_doors"]
 #====================
 #Flask routs
 #====================
-TEST_ROUTE = "/test" 
+TEST_ROUTE = "/due_status" 
 MAIN_ROUTE = "/main"
 
 
