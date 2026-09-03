@@ -8,7 +8,7 @@ venv/
 settings.json
 
 # Runtime files
-runtime/
+.runtime/
 
 # Logs
 *.log
