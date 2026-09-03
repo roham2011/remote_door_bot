@@ -4,5 +4,5 @@ struct HttpResponse
 {
     int statusCode ;
     String body ;
-    bool check = true; 
+    bool check ; 
 };

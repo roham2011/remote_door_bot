@@ -33,7 +33,7 @@ void setup()
     EthernetClient ethrClient;
     createTCPClient(ethrClient ,EthernetConfigs::flask_ip ,EthernetConfigs::flask_port);
 
-    HttpClient httpClient(ethrClient);
+    HttpClient httpClient(ethrClient,EthernetConfigs::flask_ip,EthernetConfigs::flask_port);
     checkHttp(httpClient,Routs::due_test);
 }
 

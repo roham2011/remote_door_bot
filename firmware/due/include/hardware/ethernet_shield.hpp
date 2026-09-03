@@ -6,4 +6,4 @@
 
 void initializeEthernet(byte mac[6], IPAddress self_ip);
 
-bool createTCPClient(EthernetClient& client, IPAddress server, int port, const int flaskIp, const String route);
+bool createTCPClient(EthernetClient& client,IPAddress server,int port);

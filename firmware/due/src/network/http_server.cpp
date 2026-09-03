@@ -57,6 +57,6 @@ HttpResponse postMessage(HttpClient& httpClient,String body,String route)
     SerialUSB.print("Response: ");
     SerialUSB.println(response);
 
-    return {statusPost , response};
+    return {statusPost , response , true};
 }
 

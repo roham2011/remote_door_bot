@@ -131,7 +131,10 @@ def test_webhook():
     logger.info("Raw body: %s", request.data)
     logger.info("JSON body: %s",body_update)
 
-    return jsonify({"connected": True}), 200
+    if body_update.get("event") == "due_connected":
+        return jsonify({"event": "flask_connected"}), 200
+    else :
+        return jsonify({"event": "flask_notconnected"}), 400
 
 
 # ============================================================
