@@ -3,23 +3,19 @@
 #include <Ethernet.h>
 #include <RadioLib.h>
 #include <config.hpp>
-
+#include <hardware/ethernet_shield.hpp>
+#include <ArduinoHttpClient.h>
 // creat cc1101 module
-CC1101 radio = new Module(CC1101.CSN, CC1101.GDO0 , RADIOLIB_NC , CC1101.GDO2);
-
-// set mac and ip addr
-byte mac[] = {0x02, 0xAA, 0xBB, 0xCC, 0xDD, 0x01};
-IPAddress ip(192, 168, 0, 120);
-
+CC1101 radio = new Module(CC1101Configs::CSN, CC1101Configs::GDO0 , RADIOLIB_NC , CC1101Configs::GDO2);
 
 
 void setup()
 {
-    SerialUSB.begin(115200);
+    SerialUSB.begin(ProgramConfigs::Begin);
     delay(2000);
 
     // test CC1101 connection 
-    int state = radio.begin(CC1101.frequency);
+    int state = radio.begin(CC1101Configs::frequency);
     // Chek State
     if (state == RADIOLIB_ERR_NONE) {
         SerialUSB.println("cc1101 OK");
@@ -30,15 +26,13 @@ void setup()
         //return ;
     }
 
-    // set ip for shield
-    SerialUSB.println("Starting Ethernet...");
+    initializeEthernet(EthernetConfigs::mac , EthernetConfigs::self_ip);
 
-    Ethernet.begin(mac, ip);
+    EthernetClient client;
+    createTCPClient(client ,EthernetConfigs::flask_ip ,EthernetConfigs::flask_port);
 
-    delay(1000);
-    // show wifi-shield ip
-    SerialUSB.print("IP: ");
-    SerialUSB.println(Ethernet.localIP());
+    //HttpClient httpClient;
+    //postMessage(httpClient,);
 }
 
 void loop()

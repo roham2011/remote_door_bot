@@ -1,6 +1,6 @@
 import requests
 from config.config import SEND_MESSAGE_URL
-from core.logging import get_logger
+from protocols.logging import get_logger
 
 logger = get_logger(__name__)
 

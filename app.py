@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request , jsonify
 from config.config import APP_PORT, MAIN_ROUTE,TEST_ROUTE, DEBUG,HOST, webhook_url ,TOKEN, NUM_OF_DOORS
 from utils.set_webhook import set_webh
 from database.database import sessionLocal
@@ -42,7 +42,6 @@ def main_webhook():
     # --------------------------------------------------------
     # Message Update
     # --------------------------------------------------------
-
     if "message" in update:
 
         message = update["message"]
@@ -59,7 +58,6 @@ def main_webhook():
     # --------------------------------------------------------
     # Callback Query Update
     # --------------------------------------------------------
-
     elif "callback_query" in update:
 
         callback_query = update["callback_query"]
@@ -75,8 +73,7 @@ def main_webhook():
 
     # --------------------------------------------------------
     # Invalid Update
-    # --------------------------------------------------------
-
+    # -------------------------------------------------------
     if text is None or bale_user_id is None:
 
         logger.warning("Invalid update received | update_id=%s",update_id)
@@ -87,7 +84,6 @@ def main_webhook():
     # ========================================================
     # Update Log
     # ========================================================
-
     separator_log(logger,f"UPDATE {update_id}",state=True)
 
     logger.info("Text: %s", text)
@@ -97,8 +93,7 @@ def main_webhook():
 
     # ========================================================
     # Command Handling
-    # ========================================================
-
+    # =======================================================
     with sessionLocal() as session:
 
         try:
@@ -118,7 +113,6 @@ def main_webhook():
     # ========================================================
     # End Update
     # ========================================================
-
     logger.info("Finished update | update_id=%s",update_id)
 
     separator_log(logger,state=False)
@@ -130,23 +124,18 @@ def main_webhook():
 # Test Route
 # ============================================================
 
-@app.route(TEST_ROUTE)
+@app.route(TEST_ROUTE, methods=["POST"])
 def test_webhook():
+    logger.info("TEST ROUTE REACHED")
+    logger.info("Raw body: %s", request.data)
+    logger.info("JSON body: %s", request.get_json(silent=True))
 
-    update = request.get_json(silent=True)
-    update_id = update.get("update_id")
-
-    separator_log(logger,f"UPDATE from \"TEST\"{update_id}",state=True)
-
-    logger.info(f"Test webhook requested:\n{update}")
-
-    return "Webhook is OK!"
+    return jsonify({"connected": True}), 200
 
 
 # ============================================================
 # Application Startup
 # ============================================================
-
 if __name__ == "__main__":
 
     separator_log( logger, "Configuration loaded", state=True )
