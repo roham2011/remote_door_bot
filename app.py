@@ -1,5 +1,5 @@
 from flask import Flask, request , jsonify
-from config.config import APP_PORT, MAIN_ROUTE,TEST_ROUTE, DEBUG,HOST, webhook_url ,TOKEN, NUM_OF_DOORS
+from config.config import APP_PORT, MAIN_ROUTE,TEST_DUE_ROUTE, DEBUG,HOST, webhook_url ,TOKEN, NUM_OF_DOORS
 from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
@@ -124,11 +124,12 @@ def main_webhook():
 # Test Route
 # ============================================================
 
-@app.route(TEST_ROUTE, methods=["POST"])
+@app.route(TEST_DUE_ROUTE, methods=["POST"])
 def test_webhook():
+    body_update = request.get_json(silent=True)
     logger.info("TEST ROUTE REACHED")
     logger.info("Raw body: %s", request.data)
-    logger.info("JSON body: %s", request.get_json(silent=True))
+    logger.info("JSON body: %s",body_update)
 
     return jsonify({"connected": True}), 200
 

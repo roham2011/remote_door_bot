@@ -5,6 +5,8 @@
 #include <config.hpp>
 #include <hardware/ethernet_shield.hpp>
 #include <ArduinoHttpClient.h>
+#include <network/http_server.hpp>
+
 // creat cc1101 module
 CC1101 radio = new Module(CC1101Configs::CSN, CC1101Configs::GDO0 , RADIOLIB_NC , CC1101Configs::GDO2);
 
@@ -28,11 +30,11 @@ void setup()
 
     initializeEthernet(EthernetConfigs::mac , EthernetConfigs::self_ip);
 
-    EthernetClient client;
-    createTCPClient(client ,EthernetConfigs::flask_ip ,EthernetConfigs::flask_port);
+    EthernetClient ethrClient;
+    createTCPClient(ethrClient ,EthernetConfigs::flask_ip ,EthernetConfigs::flask_port);
 
-    //HttpClient httpClient;
-    //postMessage(httpClient,);
+    HttpClient httpClient(ethrClient);
+    checkHttp(httpClient,Routs::due_test);
 }
 
 void loop()

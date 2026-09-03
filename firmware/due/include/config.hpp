@@ -27,3 +27,7 @@ namespace EthernetConfigs {
     const int flask_port = 5000 ;
 }
 
+namespace Routs {
+    const String due_test("/due/test");
+}
+
