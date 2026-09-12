@@ -7,6 +7,7 @@
 #include <configs/structurs.hpp>
 #include <network/http_server.hpp>
 #include <configs/enums.hpp>
+
 // creat cc1101 module
 CC1101 radio = new Module(CC1101Configs::CSN, CC1101Configs::GDO0 , RADIOLIB_NC , CC1101Configs::GDO2);
 
@@ -19,7 +20,7 @@ void setup()
     delay(2000);
 
     if (TestConfigs::ActiveTest != TestMode::NONE){
-        
+
     }
 
     // test CC1101 connection 

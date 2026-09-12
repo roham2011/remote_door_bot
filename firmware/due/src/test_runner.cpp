@@ -1,38 +1,57 @@
 #include <Arduino.h>
-#include <SPI.h>
+#include <configs/enums.hpp>
+#include <config.hpp>
 
-constexpr uint8_t CC1101_CSN = 22;
+//decelarators 
+void runSpiTest();
+void runCc1101Test();
+void runEthernetDetectTest();
+void runEthernetNetworkTest();
+void runEthernetRegisterTest();
+void runEthernetTcpTest();
 
-void setup()
+/**
+ * @brief this func specified a next steps of tests or no
+ * 
+ * @return true => if Activate Mode is not none
+ * @return false => if Activate Mode is none
+ */
+bool runTestRunner()
 {
-    SerialUSB.begin(115200);
-    delay(2000);
+switch (TestConfigs::ActiveTest)
+    {
+    case TestMode::SPI:
+        runSpiTest();
+        break;
 
-    pinMode(CC1101_CSN, OUTPUT);
-    digitalWrite(CC1101_CSN, HIGH);
+    case TestMode::CC1101:
+        runCc1101Test();
+        break;
 
-    pinMode(MISO, INPUT_PULLUP);
+    case TestMode::ETHERNET_DETECT:
+        runEthernetDetectTest();
+        break;
 
-    SerialUSB.println();
-    SerialUSB.println("==============================");
-    SerialUSB.println("CC1101 MISO ISOLATION TEST");
-    SerialUSB.println("==============================");
+    case TestMode::ETHERNET_NETWORK:
+        runEthernetNetworkTest();    
+        break;
 
-    SerialUSB.println();
-    SerialUSB.println("MISO wire must be DISCONNECTED from CC1101.");
-    SerialUSB.println();
+    case TestMode::ETHERNET_TCP:
+        runEthernetTcpTest();
+        break;
 
-    SerialUSB.print("CSN = ");
-    SerialUSB.println(digitalRead(CC1101_CSN) ? "HIGH" : "LOW");
+    case TestMode::ETHERNET_REGISTER:
+        runEthernetRegisterTest();
+        break;
 
-    SerialUSB.print("MISO = ");
-    SerialUSB.println(digitalRead(MISO) ? "HIGH" : "LOW");
+    default:
+        SerialUSB.println("Enter Mode in runTestRunner else");
+        break;
+    }
+
+if (TestConfigs::ActiveTest != TestMode::NONE){
+    return true;
+} else {
+    return false;
 }
-
-void loop()
-{
-    SerialUSB.print("MISO = ");
-    SerialUSB.println(digitalRead(MISO) ? "HIGH" : "LOW");
-
-    delay(500);
 }
