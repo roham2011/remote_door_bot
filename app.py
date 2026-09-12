@@ -4,7 +4,7 @@ from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
 from protocols.logging import get_logger , separator_log
-
+from test.test import test_http_server
 
 # ============================================================
 # Logger
@@ -22,6 +22,7 @@ app = Flask(__name__)
 # Webhook
 # ============================================================
 set_webh(webhook_url)
+
 
 
 # ============================================================
@@ -153,5 +154,7 @@ if __name__ == "__main__":
     logger.info("Starting Flask application")
     separator_log(logger)
 
-    app.run(host=HOST,port=APP_PORT,debug=DEBUG)
+    test_http_server()
+ 
+    app.run(host=HOST,port=APP_PORT,debug=DEBUG) 
 
