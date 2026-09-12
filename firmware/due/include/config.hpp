@@ -5,6 +5,7 @@
 
 namespace ProgramConfigs {
     /* all configs that prog to need*/
+    
     constexpr int Begin = 115200;
 }
 namespace CC1101Configs {
@@ -22,12 +23,17 @@ namespace EthernetConfigs {
 
     byte mac[6] = {0x02, 0xAA, 0xBB, 0xCC, 0xDD, 0x01};
     const IPAddress self_ip(192,168,0,120);
-
-    const IPAddress flask_ip(192,168,0,110);
-    const int flask_port = 5000 ;
+    
+    constexpr uint16_t port = 8080;
 }
 
 namespace Routs {
+    /*requirments routs in programm*/
     const String due_test("/due/test");
+}
+
+namespace TestConfigs{
+    /*test status*/
+    constexpr TestMode ActiveTest = TestMode::ETHERNET_DETECT;
 }
 

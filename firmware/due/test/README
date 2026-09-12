@@ -1,11 +1,169 @@
+# Hardware Tests
 
-This directory is intended for PlatformIO Test Runner and project tests.
+This directory contains hardware and communication tests for the Arduino Due firmware.
 
-Unit Testing is a software testing method by which individual units of
-source code, sets of one or more MCU program modules together with associated
-control data, usage procedures, and operating procedures, are tested to
-determine whether they are fit for use. Unit testing finds problems early
-in the development cycle.
+These tests are development and diagnostic tools. They are not part of the main runtime architecture of the product.
 
-More information about PlatformIO Unit Testing:
-- https://docs.platformio.org/en/latest/advanced/unit-testing/index.html
+## Test Structure
+
+```text
+test/
+├── spi/
+│   └── spi_test.cpp
+│
+├── cc1101/
+│   └── cc1101_test.cpp
+│
+└── ethernet/
+    ├── ethernet_detect_test.cpp
+    ├── ethernet_register_test.cpp
+    ├── ethernet_network_test.cpp
+    └── ethernet_tcp_test.cpp
+```
+
+## SPI Test
+
+`spi_test.cpp`
+
+Tests the basic SPI communication of the Arduino Due.
+
+The purpose is to verify that the Due SPI controller and physical SPI connection are working correctly.
+
+This test does not depend on the CC1101 or Ethernet Shield.
+
+## CC1101 Test
+
+`cc1101_test.cpp`
+
+Tests communication between the Arduino Due and the CC1101 module.
+
+The test is used to diagnose SPI communication and CC1101 connectivity before implementing the actual radio functionality.
+
+## Ethernet Detect Test
+
+`ethernet_detect_test.cpp`
+
+Checks whether the Ethernet Shield is detected by the Ethernet library.
+
+This test verifies the presence of the W5100 Ethernet controller.
+
+## Ethernet Register Test
+
+`ethernet_register_test.cpp`
+
+Tests low-level read/write access to W5100 registers.
+
+This is a hardware-level diagnostic test and is useful when Ethernet initialization fails.
+
+## Ethernet Network Test
+
+`ethernet_network_test.cpp`
+
+Initializes the W5100 with the configured network settings and verifies the local network configuration.
+
+It checks values such as:
+
+* Ethernet hardware status
+* Local IP address
+* Subnet mask
+* Gateway
+
+This test verifies the Ethernet network layer before testing TCP.
+
+## Ethernet TCP Test
+
+`ethernet_tcp_test.cpp`
+
+Tests the TCP server functionality of the Arduino Due.
+
+The Due opens a TCP listener on the configured port and waits for incoming TCP connections.
+
+The test verifies:
+
+```text
+Ethernet
+    ↓
+TCP Listener
+    ↓
+Incoming TCP Connection
+    ↓
+Receive Data
+```
+
+This test does not implement the project's HTTP protocol.
+
+Its purpose is only to verify that the Due can:
+
+1. Start a TCP listener.
+2. Accept an incoming TCP connection.
+3. Receive bytes from the client.
+4. Optionally send bytes back to the client.
+
+After TCP communication is confirmed, the main project can build the HTTP server on top of the same TCP infrastructure.
+
+## Test Selection
+
+Tests are selected through `TestConfigs::ActiveTest`.
+
+For example:
+
+```cpp
+namespace TestConfigs
+{
+    constexpr TestMode ActiveTest = TestMode::ETHERNET_TCP;
+}
+```
+
+Only one diagnostic test should be active at a time.
+
+When `ActiveTest` is `TestMode::NONE`, the normal firmware starts.
+
+## Important Architecture Rule
+
+The production architecture uses the Arduino Due as an HTTP server.
+
+The Due does not connect to Flask as a TCP client.
+
+The intended communication flow is:
+
+```text
+Flask / Other Client
+        │
+        │ HTTP over TCP
+        ▼
+Arduino Due
+        │
+        │ HTTP Server
+        ▼
+HTTP Parser
+        │
+        ▼
+Command Router
+        │
+        ▼
+Hardware
+```
+
+Therefore, `ethernet_tcp_test.cpp` is only a diagnostic test of the lower-level TCP layer.
+
+It must not introduce a runtime dependency where the Due connects to Flask.
+
+## Test Layering
+
+The tests are intentionally separated:
+
+```text
+SPI
+ ↓
+CC1101 / W5100
+ ↓
+Ethernet
+ ↓
+TCP
+ ↓
+HTTP
+ ↓
+Application Protocol
+```
+
+Each test should verify one layer before the next layer is implemented.

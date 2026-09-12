@@ -1,6 +1,17 @@
-#include <ArduinoHttpClient.h>
-#include <structurs.hpp>
+#pragma once
 
-bool postMessage(HttpClient& httpClient,String body,String route);
+#include <Ethernet.h>
+#include "../structurs.hpp"
 
-HttpResponse checkHttp(HttpClient& httpClient,String route);
+enum class HttpState
+{
+    METHOD,
+    PATH,
+    VERSION,
+    VERSION_LF,
+    HEADER,
+    HEADER_LF,
+    BODY
+};
+
+HttpRequest parseHttpRequest(EthernetClient& client, const bool debug);

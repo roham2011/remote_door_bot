@@ -1,62 +1,219 @@
-#include <ArduinoHttpClient.h>
+#include <Arduino.h>
+#include <Ethernet.h>
+
 #include <structurs.hpp>
+#include <network/http_server.hpp>
 
-HttpResponse  checkHttp(HttpClient& httpClient,String route)
+HttpRequest parseHttpRequest(EthernetClient& client, const bool debug)
 {
-    String test_message = "{\"event\":\"due_connected\"}";
 
-    // start of post-request 
-    httpClient.beginRequest();
+    String part;
+    String headerLine;
 
-    // set route
-    httpClient.post(route);
+    HttpRequest request;
 
-    // set headers
-    httpClient.sendHeader("Content-Type", "application/json");
-    httpClient.sendHeader("Content-Length", test_message.length());
+    request.contentLength = 0;
+    request.valid = true;
 
-    httpClient.print(test_message);
+    bool endHeaders = false;
 
-    httpClient.endRequest();
+    HttpState state = HttpState::METHOD;
 
-    int statusCode = httpClient.responseStatusCode();
-    String response = httpClient.responseBody();
+    const unsigned long timeout = 1000;
+    unsigned long lastReceiveTime = millis();
 
-    if (statusCode == 200 && response == "{\"event\":\"flask_connected\"}"){
-        return {statusCode , response , true};
-    } else {
-        return {statusCode , response , false};
+    while (true)
+    {
+        if (client.available())
+        {
+            char c = client.read();
+
+            lastReceiveTime = millis();
+
+            // =========================
+            // Debug
+            // =========================
+            if (debug)
+            {
+                SerialUSB.print("STATE=");
+                SerialUSB.print(static_cast<int>(state));
+                SerialUSB.print(" CHAR=[");
+
+                if (c == '\r')
+                {
+                    SerialUSB.print("\\r");
+                }
+                else if (c == '\n')
+                {
+                    SerialUSB.print("\\n");
+                }
+                else
+                {
+                    SerialUSB.print(c);
+                }
+
+                SerialUSB.println("]");
+            }
+
+            // =========================
+            // METHOD
+            // =========================
+            if (state == HttpState::METHOD)
+            {
+                if (c == ' ')
+                {
+                    request.method = part;
+                    part = "";
+
+                    state = HttpState::PATH;
+                }
+                else
+                {
+                    part += c;
+                }
+            }
+
+            // =========================
+            // PATH
+            // =========================
+            else if (state == HttpState::PATH)
+            {
+                if (c == ' ')
+                {
+                    request.path = part;
+                    part = "";
+
+                    state = HttpState::VERSION;
+                }
+                else
+                {
+                    part += c;
+                }
+            }
+
+            // =========================
+            // VERSION
+            // =========================
+            else if (state == HttpState::VERSION)
+            {
+                if (c == '\r')
+                {
+                    request.version = part;
+                    part = "";
+
+                    state = HttpState::VERSION_LF;
+                }
+                else
+                {
+                    part += c;
+                }
+            }
+
+            // =========================
+            // VERSION_LF
+            // =========================
+            else if (state == HttpState::VERSION_LF)
+            {
+                if (c == '\n')
+                {
+                    headerLine = "";
+                    state = HttpState::HEADER;
+                }
+            }
+
+            // =========================
+            // HEADER
+            // =========================
+            else if (state == HttpState::HEADER)
+            {
+                if (c == '\r')
+                {
+                    if (headerLine.length() == 0)
+                    {
+                        endHeaders = true;
+                    }
+                    else
+                    {
+                        // Check Content-Type
+                        if (headerLine.startsWith("Content-Type:"))
+                        {
+                            String contentType =
+                                headerLine.substring(13);
+
+                            contentType.trim();
+
+                            if (contentType != "application/json")
+                            {
+                                request.valid = false;
+                                break;
+                            }
+                        }
+
+                        // Read Content-Length
+                        if (headerLine.startsWith("Content-Length:"))
+                        {
+                            String value =
+                                headerLine.substring(15);
+
+                            value.trim();
+
+                            request.contentLength = value.toInt();
+                        }
+
+                        headerLine = "";
+                    }
+
+                    state = HttpState::HEADER_LF;
+                }
+                else
+                {
+                    headerLine += c;
+                }
+            }
+
+            // =========================
+            // HEADER_LF
+            // =========================
+            else if (state == HttpState::HEADER_LF)
+            {
+                if (c == '\n')
+                {
+                    if (endHeaders)
+                    {
+                        state = HttpState::BODY;
+                    }
+                    else
+                    {
+                        state = HttpState::HEADER;
+                    }
+                }
+            }
+
+            // =========================
+            // BODY
+            // =========================
+            else if (state == HttpState::BODY)
+            {
+                if (request.body.length() < request.contentLength)
+                {
+                    request.body += c;
+                }
+
+                if (request.body.length() >= request.contentLength)
+                {
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (millis() - lastReceiveTime >= timeout)
+            {
+                request.valid = false;
+                break;
+            }
+        }
     }
+
+    return request;
 }
-
-HttpResponse postMessage(HttpClient& httpClient,String body,String route)
-{
-    // create post (now is empty)    
-    httpClient.beginRequest();
-
-    // set post route 
-    httpClient.post(route);
-
-    //set headers
-    httpClient.sendHeader("Content-Type", "application/json");
-    httpClient.sendHeader("Content-Length", body.length());
-
-    // set body
-    httpClient.print(body);
-
-    //end request and post
-    httpClient.endRequest();
-
-    // get response status
-    int statusPost = httpClient.responseStatusCode();
-    String  response = httpClient.responseBody();
-
-    SerialUSB.print("HTTP Status: ");
-    SerialUSB.println(statusPost);
-
-    SerialUSB.print("Response: ");
-    SerialUSB.println(response);
-
-    return {statusPost , response , true};
-}
-
