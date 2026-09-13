@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Ethernet.h>
-#include "../structurs.hpp"
+#include <configs/structurs.hpp>
 
 enum class HttpState
 {

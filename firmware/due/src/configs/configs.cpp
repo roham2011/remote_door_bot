@@ -1,0 +1,6 @@
+#include <configs/config.hpp>
+
+namespace EthernetConfigs
+{
+    byte mac[6] = {0x02,0xAA,0xBB,0xCC,0xDD,0x01};
+}

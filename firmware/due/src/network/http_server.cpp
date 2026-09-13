@@ -1,9 +1,15 @@
 #include <Arduino.h>
 #include <Ethernet.h>
-
-#include <structurs.hpp>
+#include <configs/structurs.hpp>
 #include <network/http_server.hpp>
 
+/**
+ * @brief this func Parse the http requests from client 
+ * 
+ * @param client 
+ * @param debug 
+ * @return HttpRequest 
+ */
 HttpRequest parseHttpRequest(EthernetClient& client, const bool debug)
 {
 

@@ -7,7 +7,7 @@ These tests are development and diagnostic tools. They are not part of the main 
 ## Test Structure
 
 ```text
-test/
+tests/
 ├── spi/
 │   └── spi_test.cpp
 │

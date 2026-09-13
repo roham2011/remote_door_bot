@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <configs/enums.hpp>
-#include <config.hpp>
+#include <configs/config.hpp>
 
 //decelarators 
 void runSpiTest();
@@ -16,7 +16,7 @@ void runEthernetTcpTest();
  * @return true => if Activate Mode is not none
  * @return false => if Activate Mode is none
  */
-bool runTestRunner()
+bool runSelectedTest()
 {
 switch (TestConfigs::ActiveTest)
     {
@@ -45,7 +45,7 @@ switch (TestConfigs::ActiveTest)
         break;
 
     default:
-        SerialUSB.println("Enter Mode in runTestRunner else");
+        SerialUSB.println("Mode in runTestRunner else");
         break;
     }
 
