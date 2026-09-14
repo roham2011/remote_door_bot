@@ -20,7 +20,7 @@ EthernetServer server(EthernetConfigs::port);
 
 void setup()
 {
-    SerialUSB.begin(ProgramConfigs::Begin);
+    SerialMode.begin(ProgramConfigs::Begin);
     delay(2000);
 
     // Exit setup() and run test if test is Activate
@@ -51,12 +51,12 @@ void loop()
         HttpRequest request = parseHttpRequest(client,false);
 
         if (request.valid){
-            SerialUSB.println(request.method);
-            SerialUSB.println(request.path);
-            SerialUSB.println(request.version);
-            SerialUSB.println(request.body);
+            SerialMode.println(request.method);
+            SerialMode.println(request.path);
+            SerialMode.println(request.version);
+            SerialMode.println(request.body);
         } else {
-            SerialUSB.println("Invalid Request! (not json)");
+            SerialMode.println("Invalid Request! (not json)");
         }
     }
 }

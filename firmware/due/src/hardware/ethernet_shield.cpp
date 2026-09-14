@@ -6,24 +6,24 @@ String body = "{\"event\":\"connected\"}";
 
 void initializeEthernet(byte mac[6],IPAddress self_ip)
 {
-    SerialUSB.println("Starting Ethernet...");
+    SerialMode.println("Starting Ethernet...");
 
     Ethernet.begin(mac,self_ip);
 
     delay(1000);
     // show wifi-shield self_ip
-    SerialUSB.print("IP: ");
-    SerialUSB.println(Ethernet.localIP());
+    SerialMode.print("IP: ");
+    SerialMode.println(Ethernet.localIP());
 }
 
 bool createTCPClient(EthernetClient& client, IPAddress server, int port)
 {
     using namespace std;
     if(client.connect(server,port)){
-        SerialUSB.println("Clinet Connected!");
+        SerialMode.println("Clinet Connected!");
         
     } else {
-        SerialUSB.println("Clinet not Connected!");
+        SerialMode.println("Clinet not Connected!");
         return false;
     }
     client.print("POST /due/connection HTTP/1.1\r\n");

@@ -3,8 +3,15 @@
 #include <Arduino.h>
 #include <configs/enums.hpp>
 
+Print* SerialMode ;
+
 class Logger{
     public:
+
+    //println positions
+    static void println(const char* message);
+    static void println(int message);
+    static void println(byte message);
 
     //print positions
     static void print(const char* message);

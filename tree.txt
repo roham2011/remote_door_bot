@@ -1,0 +1,127 @@
+.
+├── app.py
+├── config
+│   ├── config_editor.py
+│   ├── config_loader.py
+│   ├── config.py
+│   └── __pycache__
+│       ├── config.cpython-313.pyc
+│       ├── config_editor.cpython-313.pyc
+│       └── config_loader.cpython-313.pyc
+├── core
+│   ├── exceptions.py
+│   ├── handle_commands.py
+│   ├── __init__.py
+│   └── __pycache__
+│       ├── config.cpython-313.pyc
+│       ├── handle_commands.cpython-313.pyc
+│       ├── __init__.cpython-313.pyc
+│       └── logging.cpython-313.pyc
+├── database
+│   ├── crud.py
+│   ├── database.py
+│   ├── __init__.py
+│   ├── models.py
+│   └── __pycache__
+│       ├── crud.cpython-313.pyc
+│       ├── database.cpython-313.pyc
+│       ├── __init__.cpython-313.pyc
+│       └── models.cpython-313.pyc
+├── firmware
+│   └── due
+│       ├── include
+│       │   ├── configs
+│       │   │   ├── config.hpp
+│       │   │   ├── enums.hpp
+│       │   │   └── structurs.hpp
+│       │   ├── hardware
+│       │   │   ├── cc1101.hpp
+│       │   │   └── ethernet_shield.hpp
+│       │   ├── network
+│       │   │   └── http_server.hpp
+│       │   ├── protocols
+│       │   │   └── commands.hpp
+│       │   ├── README
+│       │   ├── test_runner.hpp
+│       │   └── utils
+│       │       └── logger.hpp
+│       ├── lib
+│       │   └── README
+│       ├── platformio.ini
+│       ├── src
+│       │   ├── configs
+│       │   │   └── configs.cpp
+│       │   ├── hardware
+│       │   │   ├── cc1101.cpp
+│       │   │   └── ethernet_shield.cpp
+│       │   ├── main.cpp
+│       │   ├── network
+│       │   │   └── http_server.cpp
+│       │   ├── protocols
+│       │   │   └── commands.cpp
+│       │   ├── test_runner.cpp
+│       │   ├── tests
+│       │   │   ├── cc1101
+│       │   │   │   └── cc1101_test.cpp
+│       │   │   ├── ethernet
+│       │   │   │   ├── ethernet_detect_test.cpp
+│       │   │   │   ├── ethernet_network_test.cpp
+│       │   │   │   └── ethernet_tcp_test.cpp
+│       │   │   ├── README
+│       │   │   └── spi
+│       │   │       └── spi_test.cpp
+│       │   └── utils
+│       │       └── logger.cpp
+│       └── test
+├── handlers
+│   ├── admin.py
+│   ├── door.py
+│   └── __init__.py
+├── network
+│   └── __init__.py
+├── protocols
+│   ├── commands.py
+│   ├── enums.py
+│   ├── __init__.py
+│   ├── logging.py
+│   ├── messages.py
+│   └── __pycache__
+│       ├── commands.cpython-313.pyc
+│       ├── __init__.cpython-313.pyc
+│       ├── logging.cpython-313.pyc
+│       └── messages.cpython-313.pyc
+├── __pycache__
+│   └── config.cpython-313.pyc
+├── README.md
+├── requirements.txt
+├── runtime
+│   ├── app.log
+│   ├── arduino
+│   │   └── monitor.log
+│   ├── tunnel.log
+│   └── tunnel_url.txt
+├── scripts
+│   └── run.sh
+├── settings.json
+├── test
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-313.pyc
+│   │   └── test.cpython-313.pyc
+│   └── test.py
+├── tests
+│   ├── __init__.py
+│   ├── test_access.py
+│   ├── test_commands.py
+│   └── test_door.py
+├── tree.txt
+└── utils
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-313.pyc
+    │   ├── send_message.cpython-313.pyc
+    │   └── set_webhook.cpython-313.pyc
+    ├── send_message.py
+    └── set_webhook.py
+
+40 directories, 85 files

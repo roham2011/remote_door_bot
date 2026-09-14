@@ -45,7 +45,7 @@ switch (TestConfigs::ActiveTest)
         break;
 
     default:
-        SerialUSB.println("Mode in runTestRunner else");
+        SerialMode.println("Mode in runTestRunner else");
         break;
     }
 

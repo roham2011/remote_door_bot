@@ -41,24 +41,24 @@ HttpRequest parseHttpRequest(EthernetClient& client, const bool debug)
             // =========================
             if (debug)
             {
-                SerialUSB.print("STATE=");
-                SerialUSB.print(static_cast<int>(state));
-                SerialUSB.print(" CHAR=[");
+                SerialMode.print("STATE=");
+                SerialMode.print(static_cast<int>(state));
+                SerialMode.print(" CHAR=[");
 
                 if (c == '\r')
                 {
-                    SerialUSB.print("\\r");
+                    SerialMode.print("\\r");
                 }
                 else if (c == '\n')
                 {
-                    SerialUSB.print("\\n");
+                    SerialMode.print("\\n");
                 }
                 else
                 {
-                    SerialUSB.print(c);
+                    SerialMode.print(c);
                 }
 
-                SerialUSB.println("]");
+                SerialMode.println("]");
             }
 
             // =========================
