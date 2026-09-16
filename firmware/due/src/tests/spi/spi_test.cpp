@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include <utils/logger.hpp>
+#include <utils/logger.hpp>
 
 /**
  * @brief this function is a symple test SPI ports in Arduino.
@@ -9,7 +10,7 @@
  */
 void runSpiTest()
 { 
-    SerialMode.println("-----SPI TEST-----");
+    Logger::info("-----SPI TEST-----");
 
     SPI.begin();
 
@@ -25,22 +26,22 @@ void runSpiTest()
 
         byte recieved = SPI.transfer(value);
 
-        SerialMode.print("VALUE :");
-        SerialMode.print(value , HEX);
-        SerialMode.print("\n");
-        SerialMode.print("RECIEVED :");
-        SerialMode.print(recieved , HEX);
+        Logger::info("VALUE :");
+        Logger::info(value , HEX);
+        Logger::info("\n");
+        Logger::info("RECIEVED :");
+        Logger::info(recieved , HEX);
 
         if (value == recieved){
-            SerialMode.println("\tOK");
+            SerialMode->println("\tOK");
             passed++ ;
         }else {
-            SerialMode.println("\tNO\n");
+            SerialMode->println("\tNO\n");
         }
     }
     SPI.end();
     
-    SerialMode.print("Passed Number: ");
-    SerialMode.println(passed);
-    SerialMode.println("------------------");
+    Logger::info("Passed Number: ");
+    Logger::info(passed);
+    Logger::info("------------------");
 }

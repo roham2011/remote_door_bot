@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <configs/enums.hpp>
-#include <configs/config.hpp>
+#include <utils/logger.hpp>
 
 //decelarators 
 void runSpiTest();
@@ -45,7 +45,7 @@ switch (TestConfigs::ActiveTest)
         break;
 
     default:
-        SerialMode.println("Mode in runTestRunner else");
+        Logger::warn("Mode in runTestRunner else");
         break;
     }
 

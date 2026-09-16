@@ -2,6 +2,8 @@
 #include <Ethernet.h>
 #include <configs/structurs.hpp>
 #include <network/http_server.hpp>
+#include <utils/logger.hpp>
+#include <protocols/sparators.hpp>
 
 /**
  * @brief this func Parse the http requests from client 
@@ -41,24 +43,24 @@ HttpRequest parseHttpRequest(EthernetClient& client, const bool debug)
             // =========================
             if (debug)
             {
-                SerialMode.print("STATE=");
-                SerialMode.print(static_cast<int>(state));
-                SerialMode.print(" CHAR=[");
+                Logger::info("STATE=");
+                Logger::info(static_cast<int>(state));
+                Logger::print(" CHAR=[");
 
                 if (c == '\r')
                 {
-                    SerialMode.print("\\r");
+                    Logger::info("\\r");
                 }
                 else if (c == '\n')
                 {
-                    SerialMode.print("\\n");
+                    Logger::print("\\n");
                 }
                 else
                 {
-                    SerialMode.print(c);
+                    Logger::print(c);
                 }
 
-                SerialMode.println("]");
+                Logger::println("]");
             }
 
             // =========================
@@ -222,4 +224,22 @@ HttpRequest parseHttpRequest(EthernetClient& client, const bool debug)
     }
 
     return request;
+}
+
+/**
+ * @brief this function send http response 
+ * 
+ * @param client the client object
+ * @param body will be body of response
+ */
+void sendHttpResponse(EthernetClient& client, const String& body)
+{   
+    sparator("Sending Response!");
+    client.println("HTTP/1.1 200 OK");
+    client.println("Content-Type: application/json");
+    client.print("Content-Length: ");
+    client.println(body.length());
+    client.println("Connection: close");
+    client.println();
+    client.println(body);
 }

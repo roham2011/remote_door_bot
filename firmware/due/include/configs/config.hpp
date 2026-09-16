@@ -44,5 +44,7 @@ namespace TestConfigs
 {
     /* test status */
 
-    constexpr TestMode ActiveTest = TestMode::CC1101;
+    constexpr TestMode ActiveTest = TestMode::NONE;
 }
+
+extern Print* SerialMode;

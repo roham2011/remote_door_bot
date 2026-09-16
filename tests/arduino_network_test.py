@@ -1,0 +1,31 @@
+from network.send_command import send_command
+from protocols.commands import Commands
+from protocols.logging import get_logger , separator_log
+import json
+logger = get_logger(__name__)
+
+def test_http_server():
+    response = send_command(Commands.TEST)
+
+    separator_log(logger=logger , text = "Test Command sent!" , level = 2)
+
+    if response is not None:
+        try:
+            data = response.json()
+            logger.debug(response.status_code)
+            logger.debug(response.text)
+        except ValueError:
+            logger.error("Response is not valid JSON!")
+            logger.error("Response body: %s", response.text)
+        return
+
+
+    if "test" in data:
+        logger.info("First step is True!")
+    if "flask_test" in data["test"]:
+        logger.info("Response True!")
+    else :
+        logger.error("Response not True!")
+
+
+    

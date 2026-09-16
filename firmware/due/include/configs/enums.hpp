@@ -1,5 +1,9 @@
 #pragma once
 
+/**
+ * @brief this class for set the test modes
+ * 
+ */
 enum class TestMode
 {
     // without test
@@ -16,10 +20,29 @@ enum class TestMode
     ETHERNET_TCP // 6
 };
 
-enum class LogzLevel{
+/**
+ * @brief this class for set the log level show
+ * 
+ */
+enum class LogLevel{
     DEBUG,
     INFO ,
     WARN ,
     ERROR,
+    ALL,
+};
 
+/**
+ * @brief this class for http return value
+ * 
+ */
+enum class HttpState
+{
+    METHOD,
+    PATH,
+    VERSION,
+    VERSION_LF,
+    HEADER,
+    HEADER_LF,
+    BODY
 };

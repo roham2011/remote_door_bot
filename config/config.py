@@ -16,7 +16,7 @@ TOKEN = config["token"]
 NUM_OF_DOORS = config["num_of_doors"]
 
 
-#====================
+#==================== 
 #Flask routs
 #====================
 TEST_DUE_ROUTE = "/due/test" 
@@ -46,6 +46,12 @@ webhook_url= f"{Tunnel_URL}{MAIN_ROUTE}"
 #database location
 #====================
 DATABASE_URL = "sqlite:///database/RAG.db"
+
+#====================
+#arduino server
+#====================
+ARDUINO_IP = "192.168.0.120"
+ARDUINO_PORT = 8080
 
 #====================
 #if this file was run

@@ -38,20 +38,30 @@ def get_logger(name: str) -> logging.Logger:
 # ============================================================
 # Separator
 # ============================================================
-def separator_log(logger : logging.Logger, text: str | None = None,state: bool = False):
+def separator_log(logger : logging.Logger, text: str | None = None,state: bool = False,level: int | None = None):
 
     separator = "-" * 60
 
-    # Simple separator
-    if not state:
+    log_levels = {
+        1: logger.debug,
+        2: logger.info,
+        3: logger.warning,
+        4: logger.error,
+    }
+
+    log_sparator = log_levels.get(level , logger.info)
+
+    if state is True:
         logger.info(separator)
         return
 
-    # Titled section
-    logger.info(separator)
+    # Titled sections
+    log_sparator(separator)
 
     if text is not None:
         for line in text.strip().splitlines():
             logger.info("%s", line)
 
-    logger.info(separator)
+    # Finished Sections
+    log_sparator(separator)
+

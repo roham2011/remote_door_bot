@@ -4,7 +4,7 @@ from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
 from protocols.logging import get_logger , separator_log
-from test.test import test_http_server
+from tests.arduino_network_test import test_http_server
 
 # ============================================================
 # Logger
@@ -139,7 +139,7 @@ def test_webhook():
 
 
 # ============================================================
-# Application Startup
+# Application Startup 
 # ============================================================
 if __name__ == "__main__":
 
@@ -156,5 +156,5 @@ if __name__ == "__main__":
 
     test_http_server()
  
-    app.run(host=HOST,port=APP_PORT,debug=DEBUG) 
+    app.run(host=HOST,port=APP_PORT,debug=DEBUG)
 

@@ -2,16 +2,8 @@
 
 #include <Ethernet.h>
 #include <configs/structurs.hpp>
-
-enum class HttpState
-{
-    METHOD,
-    PATH,
-    VERSION,
-    VERSION_LF,
-    HEADER,
-    HEADER_LF,
-    BODY
-};
+#include <configs/config.hpp>
+#include <configs/enums.hpp>
 
 HttpRequest parseHttpRequest(EthernetClient& client, const bool debug);
+void sendHttpResponse(EthernetClient& client, const String& body);
