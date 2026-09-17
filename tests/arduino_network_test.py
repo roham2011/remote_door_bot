@@ -12,8 +12,8 @@ def test_http_server():
     if response is not None:
         try:
             data = response.json()
-            logger.debug(response.status_code)
-            logger.debug(response.text)
+            logger.debug("Response Status Code: %s",response.status_code)
+            logger.debug("Response Body: %s",response.text)
         except ValueError:
             logger.error("Response is not valid JSON!")
             logger.error("Response body: %s", response.text)
@@ -21,11 +21,11 @@ def test_http_server():
 
 
     if "test" in data:
-        logger.info("First step is True!")
+        logger.debug("First step is True!")
     if "flask_test" in data["test"]:
-        logger.info("Response True!")
+        logger.debug("Response True!")
     else :
-        logger.error("Response not True!")
+        logger.debug("Response not True!")
 
 
     
