@@ -143,16 +143,13 @@ def test_webhook():
 # ============================================================
 if __name__ == "__main__":
 
-    separator_log( logger, "Configuration loaded", state=True )
+    separator_log( logger, "Configuration loaded" )
 
     logger.info("Port = %s", APP_PORT)
     logger.info("Host = %s", HOST)
     logger.info("Number of Doors = %s", NUM_OF_DOORS)
     logger.info("Debug = %s", DEBUG)
-    separator_log(logger)
-
-    logger.info("Starting Flask application")
-    separator_log(logger)
+    separator_log(logger=logger,text="Starting Flask application",level=2)
 
     test_http_server()
  

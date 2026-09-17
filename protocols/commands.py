@@ -1,4 +1,7 @@
 class Commands():
+    """
+    this is a class for const commands in programm
+    """
     # bale bot commands
     START : str = "/start"
     USER_PANEL : str = "/user.panel"
