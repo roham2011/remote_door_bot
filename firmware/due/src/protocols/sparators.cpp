@@ -8,13 +8,13 @@ void sparator(String text)
     String finText = "\n";
     finText += text;
 
-    Logger::print("\n");
+    Logger::debug("\n");
     for (int c = 0 ; c < sparateNumber ; c++){
-        Logger::print("=");
+        Logger::debug("=");
     }
-    Logger::println(finText);
+    Logger::debug(finText);
     for (int c = 0 ;c < sparateNumber; c++){
-        Logger::print("=");
+        Logger::debug("=");
     }
-    Logger::print("\n");
+    Logger::debug("\n");
 }

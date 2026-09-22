@@ -19,5 +19,7 @@ class User(Base):
 
     first_name : Mapped[str | None] = mapped_column()
 
+    chek_admin : Mapped[bool] = mapped_column(default=False)
+
 # this code create all model tables in data bese from engine
 Base.metadata.create_all(engine)

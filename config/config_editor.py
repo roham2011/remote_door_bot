@@ -37,12 +37,15 @@ def edit_config(settings_path):
 
     # HOST
     host = input("Enter Flask host [127.0.0.1]: ").strip()
+
     if not host:
         host = "127.0.0.1"
 
     # DEBUG
     while True:
-        debug_choice = input("Select debug state [1] True [2] False: ").strip()
+        debug_choice = input(
+            "Select debug state [1] True [2] False: "
+        ).strip()
 
         if debug_choice == "1":
             debug = True
@@ -55,6 +58,19 @@ def edit_config(settings_path):
         else:
             print("Invalid debug selection.")
 
+    # ROOT ADMIN
+    while True:
+        try:
+            root_admin = int(input("Enter Root Admin Bale User ID: "))
+
+            if root_admin > 0:
+                break
+
+            print("Bale User ID must be greater than 0.")
+
+        except ValueError:
+            print("Bale User ID must be a number.")
+            
     # TOKEN
     while True:
         token = input("Enter Bale Bot token: ").strip()
@@ -70,7 +86,10 @@ def edit_config(settings_path):
         "debug": debug,
         "host": host,
         "token": token,
-        "num_of_doors": num_of_doors
+        "num_of_doors": num_of_doors,
+        "admins": [
+            root_admin
+        ]
     }
 
     # Save configuration
@@ -80,5 +99,3 @@ def edit_config(settings_path):
     print("\nConfiguration saved successfully.")
 
     return config
-
-

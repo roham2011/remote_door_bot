@@ -19,5 +19,36 @@ def send_start_menu(chat_id: int, first_name: str):
 
     post_message(payload)
 
-def send_status_doors(door_num,):
-    pass
+def send_user_panel(chat_id: int, first_name: str):
+    payload = {
+        "chat_id": chat_id,
+        "text": (
+            f"سلام {first_name}🌟\n"
+            "خوشحالیم که اینجا هستید 😊\n"
+            "اگر سوالی دارید، کافی است از ما بپرسید."
+        ),
+        "reply_markup": {
+            "inline_keyboard": [
+                [{"text": "کنترل درب ها", "callback_data": Commands.DOORS}],
+                [{"text": "پنل کاربری", "callback_data": Commands.USER_PANEL}],
+            ]
+        },
+    }
+
+    post_message(payload)
+
+def send_user_id(chat_id: int):
+    payload = {
+        "chat_id": chat_id,
+        "text": (
+            f"آیدی شما : {chat_id} است."
+        ),
+        "reply_markup": {
+            "inline_keyboard": [
+                [{"text": "کنترل درب ها", "callback_data": Commands.DOORS}],
+                [{"text": "پنل کاربری", "callback_data": Commands.USER_PANEL}],
+            ]
+        },
+    }
+
+    post_message(payload)

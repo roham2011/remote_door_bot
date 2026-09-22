@@ -7,7 +7,8 @@ class Commands():
     USER_PANEL : str = "/user.panel"
     ABOUT : str = "/about"
     DOORS : str = "/doors"
-
+    GET_USER_ID : str = "/get_user_id"
+    
     # http commands 
     TEST = {"test": "arduino_test"}
     OPEN_OWN_DOOR = {"doors":{"open_door":1}}
