@@ -5,15 +5,19 @@ from .config_editor import edit_config
 #====================
 #settings
 #====================
-SETTINGS_PATH = Path("settings.json")
 
-config = load_configs(SETTINGS_PATH) 
 
+config = load_configs() 
+
+if config is False :
+    config = edit_config()
+    
 APP_PORT = config["app_port"] 
 DEBUG = config["debug"] 
 HOST = config["host"] 
 TOKEN = config["token"] 
 NUM_OF_DOORS = config["num_of_doors"]
+ORIGIN_ADMIN = config["admins"][0]
 
 
 #==================== 
@@ -57,4 +61,4 @@ ARDUINO_PORT = 8080
 #if this file was run
 #====================
 if __name__ == "__main__":
-    edit_config(SETTINGS_PATH)
+    edit_config()

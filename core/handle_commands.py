@@ -12,7 +12,7 @@ def command_start (session : Session , user_id : int , first_name : str):
         user_id (int): send_start_menu neeed user id for send. 
         first_name (str): send_start_menu neeed first for send.
     """
-    send_start_menu(user_id,first_name)
+    send_start_menu(user_id,first_name,session)
 
     get_or_save_user(session=session , user_id=user_id , first_name=first_name)
 

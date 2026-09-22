@@ -59,7 +59,7 @@ if [ ! -f "settings.json" ]; then
     echo ""
 
     python -c "
-from config.config_loader import load_configs
+from configs.config_loader import load_configs
 load_configs('settings.json')
 "
 
@@ -80,7 +80,7 @@ fi
 # ------------------------------------------------------------
 
 PORT=$(python -c "
-from config.config import APP_PORT
+from configs.general_config import APP_PORT
 print(APP_PORT)
 ")
 

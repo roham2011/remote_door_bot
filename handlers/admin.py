@@ -1,6 +1,6 @@
 import json
-from config.config_loader import load_configs
-from config.config import SETTINGS_PATH
+from configs.config_loader import load_configs
+from configs.general_config import SETTINGS_PATH
 from protocols.logging import get_logger
 
 logger = get_logger(__name__)

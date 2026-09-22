@@ -1,5 +1,5 @@
 from flask import Flask, request , jsonify
-from config.config import APP_PORT, MAIN_ROUTE,TEST_DUE_ROUTE, DEBUG,HOST, webhook_url ,TOKEN, NUM_OF_DOORS
+from configs.general_config import APP_PORT, MAIN_ROUTE,TEST_DUE_ROUTE, DEBUG,HOST, webhook_url ,TOKEN, NUM_OF_DOORS , ORIGIN_ADMIN
 from utils.set_webhook import set_webh
 from database.database import sessionLocal
 from core.handle_commands import handle_command
@@ -148,7 +148,9 @@ if __name__ == "__main__":
     logger.info("Port = %s", APP_PORT)
     logger.info("Host = %s", HOST)
     logger.info("Number of Doors = %s", NUM_OF_DOORS)
+    logger.info("Original Admin = %s", ORIGIN_ADMIN)
     logger.info("Debug = %s", DEBUG)
+
     separator_log(logger=logger,text="Starting Flask application",level=2)
 
     test_http_server()

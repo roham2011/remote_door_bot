@@ -1,5 +1,5 @@
 import requests
-from config.config import SEND_MESSAGE_URL
+from configs.general_config import SEND_MESSAGE_URL
 from protocols.logging import get_logger
 
 logger = get_logger(__name__)
@@ -25,7 +25,7 @@ def post_message(payload):
     # ========================================================
     # Sending message
     # ========================================================
-    logger.info("Sending message | chat_id=%s",chat_id)
+    logger.debug("Sending message | chat_id=%s",chat_id)
 
     logger.debug("Message text | %s",text)
 
@@ -64,7 +64,7 @@ def post_message(payload):
 
         message_id = result.get("message_id")
 
-        logger.info("Message sent successfully | chat_id=%s | message_id=%s",chat_id,message_id)
+        logger.debug("Message sent successfully | chat_id=%s | message_id=%s",chat_id,message_id)
 
     else:
         logger.error("Bale API request failed | status=%s | response=%s",response.status_code,data)

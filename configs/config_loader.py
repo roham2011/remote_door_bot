@@ -1,19 +1,23 @@
 import json
 from .config_editor import edit_config
+from configs.path import SETTINGS_PATH
+from protocols.logging import get_logger
+
+logger = get_logger(__name__)
 
 # ============================================================
 #load config function
 # ============================================================
-def load_configs(settings_path):
+def load_configs():
 
     try:
-        with open(settings_path, "r") as file:
+        with open(SETTINGS_PATH, "r") as file:
             config = json.load(file)
 
         return config
 
     except FileNotFoundError:
 
-        print("Configuration file not found.")
+        logger.warning("Configuration file not found.")
 
-        config = edit_config(settings_path)
+        return False

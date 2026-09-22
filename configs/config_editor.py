@@ -1,9 +1,10 @@
 import json
+from configs.path import SETTINGS_PATH
 
 # ============================================================
 # edit config function
 # ============================================================
-def edit_config(settings_path):
+def edit_config():
     print("\n" + "=" * 70)
     print("configuration")
     print("=" * 70)
@@ -93,7 +94,7 @@ def edit_config(settings_path):
     }
 
     # Save configuration
-    with open(settings_path, "w") as file:
+    with open(SETTINGS_PATH, "w") as file:
         json.dump(config, file, indent=4)
 
     print("\nConfiguration saved successfully.")

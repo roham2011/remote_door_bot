@@ -1,4 +1,4 @@
-from config.config import ARDUINO_IP , ARDUINO_PORT
+from configs.general_config import ARDUINO_IP , ARDUINO_PORT
 import requests
 
 def send_command(command):
