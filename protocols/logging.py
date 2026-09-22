@@ -24,16 +24,6 @@ def get_logger(name: str , level: str = "debug") -> logging.Logger:
         logging.Logger: logger core .
     """
     level = level.strip().lower()
-def get_logger(name: str , level: str = "debug") -> logging.Logger:
-    """Create and return a logger for the target module.
-
-    Args:
-        name (str): the name of targete programm . (__name__)
-
-    Returns:
-        logging.Logger: logger core .
-    """
-    level = level.strip().lower()
 
     logger = logging.getLogger(name)
 

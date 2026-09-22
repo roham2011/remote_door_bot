@@ -5,6 +5,18 @@ from protocols.logging import get_logger
 logger = get_logger(__name__)
 
 def post_message(payload):
+    """Send a message to the Bale Bot API.
+
+    Args:
+        payload: Message payload containing chat ID, text,
+            and optional reply markup.
+
+    Returns:
+        The HTTP response returned by the Bale API.
+
+    Raises:
+        requests.RequestException: If the API request fails.
+    """
 
     chat_id = payload.get("chat_id")
     text = payload.get("text")

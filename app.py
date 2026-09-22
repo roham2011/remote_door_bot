@@ -85,7 +85,7 @@ def main_webhook():
     # ========================================================
     # Update Log
     # ========================================================
-    separator_log(logger,f"UPDATE {update_id}",state=True)
+    separator_log(logger=logger,text=f"[UPDATE [{update_id}]]",level=2)
 
     logger.info("Text: %s", text)
     logger.info("Bale User ID: %s", bale_user_id)
@@ -116,7 +116,7 @@ def main_webhook():
     # ========================================================
     logger.info("Finished update | update_id=%s",update_id)
 
-    separator_log(logger,state=False)
+    separator_log(logger=logger,text=f"[END UPDATE! [{update_id}]]",level=2)
 
     return "App_OK", 200
 
@@ -153,5 +153,5 @@ if __name__ == "__main__":
 
     test_http_server()
  
-    app.run(host=HOST,port=APP_PORT,debug=DEBUG)
+    app.run(host=HOST,port=APP_PORT,debug=DEBUG) 
 

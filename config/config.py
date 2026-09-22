@@ -45,7 +45,7 @@ webhook_url= f"{Tunnel_URL}{MAIN_ROUTE}"
 #====================
 #database location
 #====================
-DATABASE_URL = "sqlite:///database/RAG.db"
+DATABASE_URL = "sqlite:///database/Remote_Door_DB.db"
 
 #====================
 #arduino server
