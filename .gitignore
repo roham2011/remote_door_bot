@@ -30,3 +30,6 @@ __pycache__
 protocols/__pycache__
 config/__pycache__
 utils/__pycache__
+
+# Data Base
+database/Remote_Door_DB.db
