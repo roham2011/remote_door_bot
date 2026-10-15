@@ -1,0 +1,5 @@
+Repository structure is documented in README.md.
+
+Application root: Python_program/
+Launcher: scripts/run.py
+Firmware: firmware/due/

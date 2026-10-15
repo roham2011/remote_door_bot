@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets and local configuration
+.env
+.env.*
+!/.env.example
+Python_program/settings.json
+
+# Runtime output
+runtime/*.log
+runtime/tunnel_url.txt
+runtime/arduino/*.log
+
+# Local database
+Python_program/database/*.db
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

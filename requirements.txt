@@ -1,0 +1,14 @@
+# Remote Door Bot Python dependencies
+# Install with: python -m pip install -r requirements.txt
+
+# Backend API
+Flask>=3.1,<4.0
+requests>=2.32,<3.0
+SQLAlchemy>=2.0,<3.0
+
+# Cross-platform launcher console
+rich>=13.7,<15.0
+
+# Arduino discovery, serial monitoring, and board reset
+platformio>=6.1,<7.0
+pyserial>=3.5,<4.0
