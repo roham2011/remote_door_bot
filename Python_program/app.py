@@ -27,11 +27,11 @@ set_webh(webhook_url)
 
 # ============================================================
 # Main Webhook Route
-# ============================================================
+# ============================================================ 
 @app.route(MAIN_ROUTE, methods=["POST"])
 def main_webhook():
-
-    update = request.get_json(silent=True) or {}
+    logger.warning("WEBHOOK REQUEST RECEIVED")
+    update= request.get_json(silent=True) or {}
 
     update_id = update.get("update_id")
 
@@ -153,7 +153,8 @@ if __name__ == "__main__":
 
     separator_log(logger=logger,text="Starting Flask application",level=2)
 
-    test_http_server()
+    #test_http_server()
  
     app.run(host=HOST,port=APP_PORT,debug=DEBUG) 
 
+ 

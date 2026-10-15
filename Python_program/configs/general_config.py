@@ -1,7 +1,8 @@
-from pathlib import Path
 from .path import RUNTIME_DIR
 from .config_loader import load_configs
 from .config_editor import edit_config
+from pathlib import Path
+from .path import ROOT_DIR
 
 #====================
 #settings
@@ -50,7 +51,10 @@ webhook_url= f"{Tunnel_URL}{MAIN_ROUTE}"
 #====================
 #database location
 #====================
-DATABASE_URL = "sqlite:///database/Remote_Door_DB.db"
+DATABASE_DIR = ROOT_DIR / "database"
+DATABASE_DIR.mkdir(parents=True, exist_ok=True)
+
+DATABASE_URL = f"sqlite:///{(DATABASE_DIR / 'Remote_Door_DB.db').as_posix()}"
 
 #====================
 #arduino server
