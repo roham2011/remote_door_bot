@@ -1,11 +1,12 @@
 import logging
 from pathlib import Path
+from configs.path import RUNTIME_DIR
 
 
 # ============================================================
 # Log configuration
 # ============================================================
-LOG_DIR = Path("runtime")
+LOG_DIR = RUNTIME_DIR
 LOG_FILE = LOG_DIR / "app.log"
 
 LOG_DIR.mkdir(parents=True, exist_ok=True)

@@ -1,5 +1,5 @@
 import json
-from configs.path import SETTINGS_PATH
+from .path import SETTINGS_PATH
 
 # ============================================================
 # edit config function

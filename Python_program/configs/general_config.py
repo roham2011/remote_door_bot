@@ -1,4 +1,5 @@
-from pathlib import Path 
+from pathlib import Path
+from .path import RUNTIME_DIR
 from .config_loader import load_configs
 from .config_editor import edit_config
 
@@ -35,7 +36,7 @@ SET_WEBHOOK_URL = f"https://tapi.bale.ai/bot{TOKEN}/setWebhook"
 SEND_MESSAGE_URL = f"https://tapi.bale.ai/bot{TOKEN}/sendMessage"
 
 # import URL from tunneled Host
-TUNNEL_URL_FILE = Path("runtime/tunnel_url.txt")
+TUNNEL_URL_FILE = RUNTIME_DIR / "tunnel_url.txt"
 
 if TUNNEL_URL_FILE.exists():
     Tunnel_URL = TUNNEL_URL_FILE.read_text().strip()

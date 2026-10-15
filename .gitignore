@@ -4,32 +4,22 @@ __pycache__/
 .venv/
 venv/
 
-# Configuration
-settings.json
-
-# Runtime files
-.runtime/
-
-# Logs
-*.log
-
-# Environment variables / secrets
+# Secrets and local configuration
 .env
 .env.*
+!/.env.example
+Python_program/settings.json
 
-# IDE
+# Runtime output
+runtime/*.log
+runtime/tunnel_url.txt
+runtime/arduino/*.log
+
+# Local database
+Python_program/database/*.db
+
+# IDE and OS
 .vscode/
 .idea/
-
-# OS
 .DS_Store
 Thumbs.db
-
-# Cache
-__pycache__
-protocols/__pycache__
-config/__pycache__
-utils/__pycache__
-
-# Data Base
-database/Remote_Door_DB.db
